@@ -2,6 +2,19 @@
 session_start();
 include 'includes/db.php'; // Include your database connection
 
+function sendVerificationEmail($email, $token) {
+    $subject = "Email Verification";
+    $message = "Please verify your email by clicking the link: 
+                http://yourdomain.com/verify.php?token=$token";
+    $headers = "From: no-reply@yourdomain.com\r\n"; // Change to your domain
+
+    if (mail($email, $subject, $message, $headers)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
     $username = $_POST['username'];
@@ -25,12 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute(['username' => $username, 'email' => $email, 'password' => $hashedPassword, 'token' => $token]);
 
         // Send verification email
-        $subject = "Email Verification";
-        $message = "Please verify your email by clicking the link: 
-                    http://yourdomain.com/verify.php?token=$token";
-        mail($email, $subject, $message); // Use a proper mail setup in production
-        
-        echo "Registration successful! Please check your email to verify your account.";
+        if (sendVerificationEmail($email, $token)) {
+            echo "Registration successful! Please check your email to verify your account.";
+        } else {
+            echo "Failed to send verification email.";
+        }
     }
 }
 ?>
