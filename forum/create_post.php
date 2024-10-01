@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html>
 <body>
-    <form method="POST" action="create_post.php">
+    <form method="POST" action="post.php">
         <input type="text" name="title" placeholder="Title" required><br>
         <textarea name="body" placeholder="Body" required></textarea><br>
         <button type="submit">Create Post</button>
