@@ -1,5 +1,5 @@
-CREATE DATABASE forum_db;
-USE forum_db;
+CREATE DATABASE forum;
+USE forum;
 
 -- Users Table
 CREATE TABLE users (
