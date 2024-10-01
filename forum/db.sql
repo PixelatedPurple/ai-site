@@ -1,5 +1,4 @@
-CREATE DATABASE forum;
-USE forum;
+USE freedb_forumdata;
 
 -- Users Table
 CREATE TABLE users (
