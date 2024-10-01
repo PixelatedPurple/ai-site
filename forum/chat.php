@@ -54,7 +54,7 @@ $user = $stmt->fetch();
         // Function to load chat messages
         function loadChat() {
             $.ajax({
-                url: "load_messages.php",
+                url: "/api/load_messages.php",
                 method: "GET",
                 success: function(data) {
                     $('#chat-box').html(data); // Load chat messages into the chat box
@@ -70,7 +70,7 @@ $user = $stmt->fetch();
             e.preventDefault();
             var message = $('#message').val();
             $.ajax({
-                url: "send_message.php",
+                url: "/api/post.php",
                 method: "POST",
                 data: {message: message},
                 success: function() {
