@@ -2,7 +2,7 @@
 session_start();
 require 'config.php';
 
-if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
     echo "Access denied!";
     exit();
 }
