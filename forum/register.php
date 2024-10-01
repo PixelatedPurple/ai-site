@@ -5,8 +5,8 @@ include 'includes/db.php'; // Include your database connection
 function sendVerificationEmail($email, $token) {
     $subject = "Email Verification";
     $message = "Please verify your email by clicking the link: 
-                http://yourdomain.com/verify.php?token=$token";
-    $headers = "From: no-reply@yourdomain.com\r\n"; // Change to your domain
+                https://localhost/verify.php?token=$token";
+    $headers = "From: no-reply@cursedbots.xyz\r\n"; // Change to your domain
 
     if (mail($email, $subject, $message, $headers)) {
         return true;
