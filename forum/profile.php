@@ -9,6 +9,22 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
+// Fetch the user's details
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->execute([$user_id]);
+$user = $stmt->fetch();
+
+// Redirect unverified users to the verification landing page
+if (!$user['is_verified']) {
+    header('Location: verify_landing.php');
+    exit();
+}
+
+echo "Welcome to your profile, " . $user['username'];
+
+
+$user_id = $_SESSION['user_id'];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bio = $_POST['bio'];
 
