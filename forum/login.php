@@ -11,19 +11,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['password'])) {
-        if ($user['is_verified']) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['is_admin'] = $user['is_admin'];
-
-            header('Location: profile.php');
-        } else {
-            echo "Please verify your email.";
-        }
+    if ($user['is_verified']) {
+        // Redirect to the profile or dashboard page
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['is_admin'] = $user['is_admin'];
+        header('Location: profile.php');
     } else {
-        echo "Invalid email or password.";
+        // Redirect to the verification landing page
+        $_SESSION['user_id'] = $user['id'];
+        header('Location: verify_landing.php');
     }
+} else {
+    echo "Invalid email or password.";
 }
+
 ?>
 
 <!DOCTYPE html>
