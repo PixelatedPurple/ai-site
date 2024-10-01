@@ -1,5 +1,8 @@
 <?php
 require 'config.php';
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Content-Type");
+header("Content-Type: application/json; charset=UTF-8");
 
 // Fetch chat messages from the database
 $stmt = $pdo->prepare("SELECT chat_messages.message, chat_messages.created_at, users.username 
