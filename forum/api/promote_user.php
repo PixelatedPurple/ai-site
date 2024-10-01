@@ -2,7 +2,7 @@
 session_start();
 require 'config.php';
 
-if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
+if (!isset($_SESSION['is_owner']) || $_SESSION['is_owner'] != 1) {
     header('Location: login.php');
     exit();
 }
